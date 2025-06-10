@@ -16,7 +16,7 @@ export default function Home() {
 
         {/* Subtitle */}
         <p className="text-xl sm:text-2xl mb-6 text-gray-300">
-          I'm building something awesome. 🚀
+          I&apos;m building something awesome. 🚀
         </p>
 
         {/* Explore Other Work */}
