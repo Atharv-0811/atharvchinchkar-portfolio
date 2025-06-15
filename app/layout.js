@@ -7,7 +7,7 @@ import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import '@/app/globals.css';
 import { Space_Grotesk, Roboto_Mono } from 'next/font/google'; // Import the font
-import HirePopup from '@/components/HirePopUp';
+import HirePopup from '@/components/HirePopup';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
