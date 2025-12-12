@@ -57,7 +57,7 @@ const AboutSection = () => {
         >
             <Container size="lg" px={{ base: 'md', sm: 'lg' }}>
                 {/* Header with gradient text like Hero */}
-                <Stack align="center" gap={{ base: 16, sm: 20 }} mb={{ base: 28, md: 'lg' }}>
+                <Stack align="center" gap="sm" mb={{ base: 28, md: 'lg' }}>
                     <Badge
                         variant="outline"
                         color="gray"
@@ -104,7 +104,7 @@ const AboutSection = () => {
                     mb={{ base: 60, sm: 80 }}
                 >
                     {/* Left Column - Welcome Message */}
-                    <Stack gap={{ base: 'lg', sm: 'xl' }} align='center' justify='center' pt={'xs'}>
+                    <Stack gap="lg" align='center' justify='center' pt={'xs'}>
                         {/* <Flex align="center" gap="sm">
                             <Coffee size={24} className="text-amber-400" style={{ color: '#FBBF24' }} />
                             <Text
@@ -250,7 +250,7 @@ const AboutSection = () => {
                 </SimpleGrid>
 
                 {/* Skills Section */}
-                <Stack gap={{ base: 28, sm: 36 }}>
+                <Stack gap="md">
                     <Flex direction="column" align="center" gap="sm">
                         <Title
                             order={4}
