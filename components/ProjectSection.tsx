@@ -1,11 +1,12 @@
 // Projects Section Component
 'use client';
 
-import { useState } from 'react';
+import { useRef } from 'react';
 import { Code, Server, Globe, ArrowRight, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Box, Container, Title, Text, SimpleGrid, Paper, Stack, Group, Badge, Button, Flex, Anchor } from '@mantine/core';
+import { motion, useInView } from 'motion/react';
 
 interface Project {
   title: string;
@@ -15,6 +16,48 @@ interface Project {
   live: string;
   image: string;
 }
+
+// Subtle animated wrapper - same as AboutSection
+const FadeIn = ({
+  children,
+  delay = 0,
+  direction = 'up'
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  direction?: 'up' | 'down' | 'left' | 'right' | 'fade';
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
+
+  const getOffset = () => {
+    switch (direction) {
+      case 'up': return { y: 20, x: 0 };
+      case 'down': return { y: -20, x: 0 };
+      case 'left': return { y: 0, x: 20 };
+      case 'right': return { y: 0, x: -20 };
+      case 'fade': return { y: 0, x: 0 };
+      default: return { y: 20, x: 0 };
+    }
+  };
+
+  const offset = getOffset();
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, ...offset }}
+      animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, ...offset }}
+      transition={{
+        duration: 0.5,
+        delay: delay / 1000,
+        ease: [0.25, 0.1, 0.25, 1]
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const ProjectsSection = () => {
   const projects: Project[] = [
@@ -42,23 +85,6 @@ const ProjectsSection = () => {
       live: "https://jal-mitra.vercel.app/",
       image: "/projects/jalmitra.png"
     },
-
-    // {
-    //   title: "SoftSell",
-    //   description: `A responsive, single-page marketing website built for a fictional software resale startup. This project focuses on streamlined user experience and effective presentation of key information for selling software licenses.`,
-    //   technologies: ["Next.js", "Socket.io", "PostgreSQL", "Tailwind"],
-    //   github: "https://github.com/Atharv-0811/SoftSell",
-    //   live: "https://softsell-sepia.vercel.app/",
-    //   image: "/projects/softsell.png"
-    // },
-    // {
-    //   title: "Dummy Project",
-    //   description: "An interactive dummy dashboard that provides real-time dummy data, dummy, and dummy visualizations using dummy.js.",
-    //   technologies: ["React", "Chart.js", "OpenWeather API", "CSS3"],
-    //   github: "#",
-    //   live: "#",
-    //   image: "/window.svg"
-    // }
   ];
 
   return (
@@ -66,207 +92,238 @@ const ProjectsSection = () => {
       component="section"
       id="projects"
       py={{ base: 60, sm: 80 }}
-      style={{ backgroundColor: '#030712' }}
+      style={{ backgroundColor: '#0f0f18' }}
     >
       <Container size="xl" px={{ base: 'md', sm: 'lg' }}>
-        <Stack align="center" gap="sm" mb={{ base: 40, sm: 64 }}>
-          <Title
-            order={2}
-            fz={{ base: '1.875rem', sm: '2.25rem' }}
-            fw={700}
-            c="white"
-            ta="center"
-          >
-            Featured Projects
-          </Title>
-          <Box
-            w={96}
-            h={4}
-            mb="sm"
-            style={{
-              background: 'linear-gradient(to right, white, #6b7280)',
-              borderRadius: '2px'
-            }}
-          />
-          <Text
-            fz="lg"
-            c="gray.5"
-            ta="center"
-            maw={672}
-          >
-            Here are some of the projects I&apos;ve worked on that showcase my skills and passion for creating exceptional digital experiences.
-          </Text>
-        </Stack>
+        {/* Header */}
+        <FadeIn delay={0} direction="fade">
+          <Stack align="center" gap="sm" mb={{ base: 40, sm: 64 }}>
+            <Title
+              order={2}
+              fz={{ base: '2rem', sm: '2.5rem', md: '3rem' }}
+              ta="center"
+              fw={700}
+              lh={1.1}
+              c='mint.0'
+            >
+              Featured Projects
+            </Title>
+            <Text
+              fz="lg"
+              c="gray.5"
+              ta="center"
+              maw={672}
+            >
+              Here are some of the projects I&apos;ve worked on that showcase my skills and passion for creating exceptional digital experiences.
+            </Text>
+          </Stack>
+        </FadeIn>
 
+        {/* Projects Grid */}
         <SimpleGrid
           cols={{ base: 1, md: 2, lg: 3 }}
           spacing="lg"
         >
           {projects.map((project, index) => (
-            <Paper
+            <motion.div
               key={index}
-              radius="lg"
-              bg="rgba(255, 255, 255, 0.05)"
-              style={{
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                overflow: 'hidden',
-                transition: 'all 0.3s ease',
-                display: 'flex',
-                flexDirection: 'column'
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              whileHover={{ scale: 1.02, y: -6 }}
+              transition={{
+                duration: 0.4,
+                delay: 0.1 * index,
+                ease: [0.25, 0.1, 0.25, 1]
               }}
-              styles={{
-                root: {
-                  '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                    transform: 'translateY(-8px)'
-                  }
-                }
-              }}
+              style={{ height: '100%' }}
             >
-              {/* Project Image */}
-              <Box
+              <Paper
+                radius="lg"
+                bg="rgba(255, 255, 255, 0.05)"
+                h="100%"
                 style={{
-                  aspectRatio: '16/9',
-                  background: 'linear-gradient(to bottom right, #1f2937, #111827)',
-                  position: 'relative',
-                  overflow: 'hidden'
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  overflow: 'hidden',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+                styles={{
+                  root: {
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                      borderColor: 'rgba(255, 255, 255, 0.18)'
+                    }
+                  }
                 }}
               >
-                {project.image ? (
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    style={{
-                      objectFit: 'cover',
-                      transition: 'transform 0.3s ease'
-                    }}
-                  />
-                ) : (
-                  <Flex
-                    pos="absolute"
-                    top={0}
-                    left={0}
-                    right={0}
-                    bottom={0}
-                    align="center"
-                    justify="center"
-                    style={{
-                      background: 'linear-gradient(to bottom right, rgba(255,255,255,0.05), rgba(255,255,255,0.1))'
-                    }}
-                  >
-                    <Text fz="2rem" fw={700} c="rgba(255,255,255,0.2)">
-                      {project.title.split(' ').map(word => word[0]).join('')}
-                    </Text>
-                  </Flex>
-                )}
-              </Box>
-
-              {/* Project Content */}
-              <Stack p="sm" gap="sm" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                <Title
-                  order={3}
-                  fz="xl"
-                  fw={600}
-                  c="white"
-                  style={{ transition: 'color 0.3s ease' }}
+                {/* Project Image */}
+                <Box
+                  style={{
+                    aspectRatio: '16/9',
+                    background: 'linear-gradient(to bottom right, #1f2937, #111827)',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}
                 >
-                  {project.title}
-                </Title>
-                <Text
-                  fz="sm"
-                  c="gray.5"
-                  lh={1.6}
-                  style={{ flex: 1 }}
-                >
-                  {project.description}
-                </Text>
-
-                <Box mt="auto">
-                  {/* Technologies */}
-                  <Group gap="xs" mb="sm">
-                    {project.technologies.map((tech, techIndex) => (
-                      <Badge
-                        key={techIndex}
-                        variant="outline"
-                        size="sm"
-                        radius="xl"
-                        styles={{
-                          root: {
-                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                            borderColor: 'rgba(255, 255, 255, 0.1)',
-                            color: '#d1d5db',
-                            textTransform: 'none',
-                            fontWeight: 400
-                          }
-                        }}
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </Group>
-
-                  {/* Project Links */}
-                  <Group gap="sm">
-                    <Button
-                      w='full'
-                      component="a"
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      bg="#fdfbf7ec"
-                      c="#0C214A"
-                      color="dark"
-                      size="sm"
-                      radius="md"
-                      leftSection={<ExternalLink size={16} />}
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      style={{
+                        objectFit: 'cover',
+                        transition: 'transform 0.4s ease'
+                      }}
+                    />
+                  ) : (
+                    <Flex
+                      pos="absolute"
+                      top={0}
+                      left={0}
+                      right={0}
+                      bottom={0}
+                      align="center"
+                      justify="center"
+                      style={{
+                        background: 'linear-gradient(to bottom right, rgba(255,255,255,0.05), rgba(255,255,255,0.1))'
+                      }}
                     >
-                      View
-                    </Button>
-                  </Group>
+                      <Text fz="2rem" fw={700} c="rgba(255,255,255,0.2)">
+                        {project.title.split(' ').map(word => word[0]).join('')}
+                      </Text>
+                    </Flex>
+                  )}
                 </Box>
-              </Stack>
-            </Paper>
+
+                {/* Project Content */}
+                <Stack p="sm" gap="sm" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  <Title
+                    order={3}
+                    fz="xl"
+                    fw={600}
+                    c="white"
+                    style={{ transition: 'color 0.3s ease' }}
+                  >
+                    {project.title}
+                  </Title>
+                  <Text
+                    fz="sm"
+                    c="gray.5"
+                    lh={1.6}
+                    style={{ flex: 1 }}
+                  >
+                    {project.description}
+                  </Text>
+
+                  <Box mt="auto">
+                    {/* Technologies */}
+                    <Group gap="xs" mb="sm">
+                      {project.technologies.map((tech, techIndex) => (
+                        <Badge
+                          key={techIndex}
+                          variant="outline"
+                          size="sm"
+                          radius="xl"
+                          styles={{
+                            root: {
+                              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                              borderColor: 'rgba(255, 255, 255, 0.1)',
+                              color: '#d1d5db',
+                              textTransform: 'none',
+                              fontWeight: 400,
+                              transition: 'all 0.2s ease',
+                              '&:hover': {
+                                backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                                borderColor: 'rgba(255, 255, 255, 0.2)'
+                              }
+                            }
+                          }}
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </Group>
+
+                    {/* Project Links */}
+                    <Group gap="sm">
+                      <motion.div
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                        style={{ width: '100%' }}
+                      >
+                        <Button
+                          w='100%'
+                          component="a"
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          bg="#fdfbf7ec"
+                          c="#0C214A"
+                          color="dark"
+                          size="sm"
+                          radius="md"
+                          leftSection={<ExternalLink size={16} />}
+                          styles={{
+                            root: {
+                              transition: 'box-shadow 0.2s ease',
+                              '&:hover': {
+                                boxShadow: '0 6px 16px rgba(255, 255, 255, 0.12)'
+                              }
+                            }
+                          }}
+                        >
+                          View
+                        </Button>
+                      </motion.div>
+                    </Group>
+                  </Box>
+                </Stack>
+              </Paper>
+            </motion.div>
           ))}
         </SimpleGrid>
       </Container>
 
-      <Flex justify="center" mt={{ base: 40, sm: 48 }}>
-        <Button
-          component={Link}
-          href="https://github.com/Atharv-0811"
-          target="_blank"
-          rel="noopener noreferrer"
-          variant="outline"
-          size="md"
-          radius="md"
-          fw={600}
-          rightSection={<ArrowRight size={20} />}
-          styles={{
-            root: {
-              borderColor: 'rgba(107, 114, 128, 0.5)',
-              backgroundColor: 'rgba(17, 24, 39, 0.8)',
-              backdropFilter: 'blur(12px)',
-              color: '#f3f4f6',
-              transition: 'all 0.3s ease',
-              '&:hover': {
-                backgroundColor: 'rgba(31, 41, 55, 0.8)',
-                transform: 'translateY(-2px)',
-                boxShadow: '0 10px 25px rgba(107, 114, 128, 0.2)'
-              }
-            },
-            section: {
-              transition: 'transform 0.3s ease',
-              '[data-mantine-button]:hover &': {
-                transform: 'translateX(4px)'
-              }
-            }
-          }}
-        >
-          Explore All Projects
-        </Button>
-      </Flex>
+      {/* Explore All Button */}
+      <FadeIn delay={400} direction="up">
+        <Flex justify="center" mt={{ base: 40, sm: 48 }}>
+          <motion.div
+            whileHover={{ scale: 1.02, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            style={{ display: 'inline-block' }}
+          >
+            <Button
+              component={Link}
+              href="/projects"
+              variant="outline"
+              size="md"
+              radius="md"
+              fw={600}
+              rightSection={<ArrowRight size={20} />}
+              styles={{
+                root: {
+                  borderColor: 'rgba(107, 114, 128, 0.5)',
+                  backgroundColor: 'rgba(17, 24, 39, 0.8)',
+                  backdropFilter: 'blur(12px)',
+                  color: '#f3f4f6',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    backgroundColor: 'rgba(31, 41, 55, 0.8)',
+                    boxShadow: '0 10px 25px rgba(107, 114, 128, 0.2)'
+                  }
+                }
+              }}
+            >
+              Explore All Projects
+            </Button>
+          </motion.div>
+        </Flex>
+      </FadeIn>
     </Box>
   );
 };

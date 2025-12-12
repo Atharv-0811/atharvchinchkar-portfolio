@@ -17,9 +17,9 @@ const Navbar = () => {
     }, []);
   
     const navItems = [
-      { name: 'About', href: '#about' },
-      { name: 'Projects', href: '#projects' },
-      { name: 'Contact', href: '#contact' }
+      { name: 'About', href: '/#about' },
+      { name: 'Projects', href: '/#projects' },
+      { name: 'Contact', href: '/#contact' }
     ];
   
     return (
@@ -30,7 +30,7 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <a href="#" className="text-xl font-bold text-white">
+              <a href="/" className="text-xl font-bold text-white">
                 Atharv Chinchkar
               </a>
             </div>
