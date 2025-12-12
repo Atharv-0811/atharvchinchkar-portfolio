@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Code, Palette, Database, Globe, ArrowRight, Menu, X, Server, BrainCog, BrainCircuit } from 'lucide-react';
+import { Flex, SimpleGrid, Text, Button } from '@mantine/core';
 
 // Interactive Terminal Component
 const InteractiveTerminal = () => {
@@ -120,35 +121,50 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black pt-16 md:pt-20">      {/* Background gradient */}
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
 
       {/* Grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:72px_72px]"></div>
+      {/* <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:72px_72px]"></div> */}
 
-      <div className="max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 py-12 md:py-16 text-center">
+      {/* <div className="max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 py-12 md:py-16 text-center"> */}
+      <div className="max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 pt-6 pb-12 md:py-16 text-center">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Greeting */}
-          <div className="mb-6 text-center">
+          {/* <div className="mb-6 text-center">
             <span className="inline-block px-4 py-2 bg-gray-900/90 backdrop-blur border border-gray-700 rounded-md font-mono text-green-500">
               <code>Hello World, I'm</code>
             </span>
-          </div>
+          </div> */}
 
           {/* Name */}
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-2">
             <span className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent">
               Atharv Chinchkar
             </span>
           </h1>
 
           {/* Role */}
-          <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-400 mb-6 font-light tracking-widest">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-400 mb-8 font-light tracking-widest">
             Full Stack Developer
           </h2>
 
           {/* Skills */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
+          <div className="hidden md:flex flex-wrap justify-center gap-3 mb-8 pt-4">
+            {[
+              { icon: Code, text: 'Web Development' },
+              { icon: Server, text: 'Backend Systems' },
+              { icon: Database, text: 'Database Management' },
+              { icon: BrainCircuit, text: 'AI/ML Integration' }
+            ].map((skill, index) => (
+              <div key={index} className="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur border border-white/10 rounded-full">
+                <skill.icon size={16} className="text-gray-300" />
+                <span className="text-md text-gray-300">{skill.text}</span>
+              </div>
+            ))}
+          </div>
+
+          <SimpleGrid cols={2} spacing="xs" verticalSpacing="xs" hiddenFrom="md" mb={'md'}>
             {[
               { icon: Code, text: 'Web Development' },
               { icon: Server, text: 'Backend Systems' },
@@ -160,35 +176,84 @@ const HeroSection = () => {
                 <span className="text-sm text-gray-300">{skill.text}</span>
               </div>
             ))}
-          </div>
+          </SimpleGrid>
 
           {/* Description */}
-          <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+          {/* <p className="text-lg text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed">
             I craft modern web experiences with clean code and intuitive design.
             Passionate about creating solutions that make a difference.
-          </p>
+          </p> */}
+          <Flex w={'full'} justify="center" my={{base: '0', md: 'sm'}} pt={{base: '0', md: 'sm'}}>
+            <Flex w={{ base: 'full', md: '50%' }} justify="center" align="center">
+              <Text visibleFrom="md" c="gray.2" fz={{ base: 'md', md: 'xl' }} mb={{base: 'sm3', md: 'md'}}>
+                I develop custom websites, mobile apps, and e-commerce platforms. I handle the entire process from setup to launch, delivering clean code and reliable software solutions.
+              </Text>
+              <Text hiddenFrom="md" c="gray.2" fz={{ base: 'md', md: 'lg' }} mb={{base: 'sm3', md: 'md'}}>
+                Building custom websites, apps, and e-commerce. I handle the entire process from code to launch.
+              </Text>
+            </Flex>
+          </Flex>
 
           {/* Terminal - positioned between description and CTA buttons */}
-          <div className="flex justify-center mb-10">
+          {/* <div className="flex justify-center mb-10">
             <InteractiveTerminal />
-          </div>
+          </div> */}
 
           {/* CTA Button */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#projects"
-              className="group inline-flex items-center justify-center px-8 py-4 bg-white text-black rounded-xl font-medium hover:bg-gray-100 transition-all duration-200 hover:scale-105"
+              className="group inline-flex items-center justify-center px-8 py-3 bg-white text-black rounded-4xl font-medium hover:bg-gray-100 transition-all duration-200 hover:scale-105"
             >
               View My Work
               <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center justify-center px-8 py-4 border border-white/20 text-white rounded-xl font-medium hover:bg-white/5 transition-all duration-200"
+              className="inline-flex items-center justify-center px-8 py-4 border border-white text-white rounded-4xl font-medium hover:bg-white/5 transition-all duration-200"
             >
               Get In Touch
             </a>
-          </div>
+          </div> */}
+          <Flex
+            direction={{ base: 'column', sm: 'row' }}
+            gap="sm"
+            justify="center"
+            px={{base: 'md', md: '0'}}
+          >
+            <Button
+              component="a"
+              href="#projects"
+              variant="white"
+              color="black"
+              fz={{base: 'md', md: 'lg'}}
+              fw={500}
+              size='lg'
+              radius="xl"
+              rightSection={<ArrowRight size={20} />}
+              styles={{
+                root: { transition: 'transform 200ms ease' },
+              }}
+              sx={{
+                '&:hover': { transform: 'scale(1.05)' }
+              }}
+            >
+              View My Work
+            </Button>
+
+            <Button
+              component="a"
+              href="#contact"
+              variant="outline"
+              color="white"
+              fz={{base: 'md', md: 'lg'}}
+              fw={500}
+              size='lg'
+              radius="xl"
+            >
+              Get In Touch
+            </Button>
+          </Flex>
         </div>
 
         {/* Scroll Indicator */}
