@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       style={
         {
           ["--mantine-font-family" as any]: "var(--font-work-sans)",
-          ["--mantine-font-family-headings" as any]: "var(--font-epilogue)",
+          ["--mantine-font-family-headings" as any]: "var(--font-poppins)",
         } as React.CSSProperties
       }
     >

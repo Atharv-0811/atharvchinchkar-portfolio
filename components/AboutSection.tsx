@@ -52,7 +52,8 @@ const AboutSection = () => {
             pb={{ base: 60, sm: 80, md: 100 }}
             pt={{ base: 20, sm: 40, md: 60 }}
             style={{
-                background: 'linear-gradient(to bottom, #000000 0%, #0a0a0f 50%, #0f0f18 100%)'
+                // background: 'linear-gradient(to bottom, #000000 0%, #0a0a0f 50%, #0f0f18 100%)'
+                background: '#0f0f18',
             }}
         >
             <Container size="lg" px={{ base: 'md', sm: 'lg' }}>
