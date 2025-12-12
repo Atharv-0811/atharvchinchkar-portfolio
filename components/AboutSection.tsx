@@ -124,8 +124,8 @@ const AboutSection = () => {
                             lh={1.4}
                             style={{ color: '#9CA3AF' }}
                         >
-                            Hey there! I'm <span style={{ color: accentColor, fontWeight: 600 }}>Atharv</span>,
-                            a Full Stack Developer who's genuinely excited about building things that matter.
+                            Hey there! I&apos;m <span style={{ color: accentColor, fontWeight: 600 }}>Atharv</span>,
+                            a Full Stack Developer who&apos;s genuinely excited about building things that matter.
                             Fresh out of computer science, I bring a blend of <span style={{ color: accentColor }}>modern technical skills</span> and
                             a fresh perspective to every project.
                         </Text>
@@ -135,10 +135,10 @@ const AboutSection = () => {
                             lh={1.8}
                             style={{ color: '#9CA3AF' }}
                         >
-                            What sets me apart? I don't just write code—I <span style={{ color: accentColor }}>solve problems</span>.
-                            Whether it's crafting a seamless user experience or architecting a robust backend,
+                            What sets me apart? I don&apos;t just write code—I <span style={{ color: accentColor }}>solve problems</span>.
+                            Whether it&apos;s crafting a seamless user experience or architecting a robust backend,
                             I approach every challenge with curiosity and dedication. Through freelance work,
-                            I've learned that great software is built on <span style={{ color: accentColor }}>clear communication</span> and
+                            I&apos;ve learned that great software is built on <span style={{ color: accentColor }}>clear communication</span> and
                             genuine care for the end result.
                         </Text>
 
