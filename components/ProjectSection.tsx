@@ -107,7 +107,7 @@ const ProjectsSection = () => {
       technologies: ["React", "Node.js", "MongoDB", "TailwindCSS"],
       github: "https://github.com/Atharv-0811/this-is-dualnature",
       live: "https://www.thisisdualnature.com/",
-      image: "/projects/dualnature.png",
+      image: "/projects/dualnature.webp",
     },
     {
       title: "Jal Mitra",
@@ -116,7 +116,7 @@ const ProjectsSection = () => {
       technologies: ["Node.js", "React", "MongoDB", "IoT Sensors"],
       github: "#",
       live: "https://jal-mitra.vercel.app/",
-      image: "/projects/jalmitra.png",
+      image: "/projects/jalmitra.webp",
     },
   ];
 
