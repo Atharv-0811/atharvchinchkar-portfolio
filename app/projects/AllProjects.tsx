@@ -62,52 +62,60 @@ const FadeIn = ({
 const AllProjects = () => {
     const projects: Project[] = [
         {
-            title: "Dualnature Music Website",
-            description: "A full-stack responsive solution with React, Node.js, and TailwindCSS. Features include dynamically chaning themes, realtime updating song gallery, and contact page integration with email.",
+            title: "Chest Care Centre",
+            description: "A premium digital platform engineered for a specialized medical clinic. Features a custom zero-maintenance CMS for managing medical achievements.",
+            technologies: ["Next.js", "Mantine UI", "SEO Strategy", "TypeScript"],
+            github: "#", 
+            live: "https://www.chestcarecentre.in/",
+            image: "/projects/chestcare.webp" 
+        },
+        {
+            title: "Dualnature Music",
+            description: "A dynamic full-stack web solution for a music artist. We built a responsive platform with real-time gallery updates, theme-switching capabilities, and seamless email integration to help the artist connect with their audience.",
             technologies: ["React", "Node.js", "MongoDB", "TailwindCSS"],
             github: "https://github.com/Atharv-0811/this-is-dualnature",
             live: "https://www.thisisdualnature.com/",
-            image: "/projects/dualnature.png"
+            image: "/projects/dualnature.webp"
         },
         {
             title: "A4V1 Consultancy",
-            description: "A modern consultancy website for an AI/ML and full-stack solutions provider. Features dynamic animations, multi-step contact forms, and showcases projects across industries like railways and pharma.",
+            description: "A corporate identity website designed for an AI/ML consultancy. We focused on high-end animations and a structured user journey to showcase their work across railway and pharma sectors effectively.",
             technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Node.js"],
             github: "#",
             live: "https://www.a4v1.com/",
-            image: "/projects/a4v1.png"
+            image: "/projects/a4v1.webp"
         },
         {
             title: "Jal Mitra",
-            description: "A full-stack IoT system for real-time water level monitoring in railway reservoirs. Built the backend, dashboard, and sensor integration for a live government project.",
+            description: "An enterprise-grade IoT dashboard developed for a government railway project. The system monitors water levels in real-time, integrating complex sensor data into an intuitive admin interface for decision-making.",
             technologies: ["Node.js", "React", "MongoDB", "IoT Sensors"],
             github: "#",
             live: "https://jal-mitra.vercel.app/",
-            image: "/projects/jalmitra.png"
-        },
-        {
-            title: "LumiFlix",
-            description: "A free streaming platform with instant search for movies, series, and anime. Features dynamic content discovery, real-time TMDB API integration, and responsive design for seamless streaming across devices.",
-            technologies: ["React", "Vite", "TMDB API", "Vercel"],
-            github: "#",
-            live: "#",
-            image: "/projects/lumiflix.png"
+            image: "/projects/jalmitra.webp"
         },
         {
             title: "Nihon Technologies",
-            description: "A professional consultancy website for an AI/ML, IoT, and full-stack development firm. Features service showcases, client testimonials, and project galleries for government clients including railways.",
+            description: "A professional portfolio site for a tech firm. We delivered a clean, service-oriented design that highlights their expertise in AI and IoT, helping them establish credibility with government clients.",
             technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Node.js"],
             github: "#",
             live: "https://max-ocean.vercel.app/",
-            image: "/projects/nihontech.png"
+            image: "/projects/nihontech.webp"
         },
         {
             title: "SoftSell",
-            description: "A polished marketing website for a software resale startup. Features 3D interactive dashboard displays, smooth parallax scrolling, multi-step contact forms with validation, and engaging Framer Motion animations.",
+            description: "A high-conversion marketing platform for a software startup. We implemented 3D interactive elements and smooth parallax scrolling to create an engaging product tour and lead generation flow.",
             technologies: ["Next.js", "Framer Motion", "Tailwind CSS", "React"],
             github: "https://github.com/Atharv-0811/SoftSell",
             live: "https://softsell-sepia.vercel.app/",
-            image: "/projects/softsell.png"
+            image: "/projects/softsell.webp"
+        },
+        {
+            title: "LumiFlix",
+            description: "A consumer-facing streaming application prototype. Showcases our ability to handle complex API integrations (TMDB) and build responsive, app-like interfaces for media consumption.",
+            technologies: ["React", "Vite", "TMDB API", "Vercel"],
+            github: "#",
+            live: "#",
+            image: "/projects/lumiflix.webp"
         },
     ];
 
